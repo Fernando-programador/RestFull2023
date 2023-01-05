@@ -9,4 +9,7 @@ public class UnsupportedMatchOperationException  extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 
+	public UnsupportedMatchOperationException(String ex) {
+		super(ex);
+	}
 }
