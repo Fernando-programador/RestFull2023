@@ -1,1 +1,26 @@
+# ignorando chaves SSH
+*.pem
+*.ppk
+
+# arquivos compilados
+*.jar
+*.war
+*.ear 
+
+#arquivos temporário do gradle
+target/
+
+#arquivos temporários do eclipse
+**/.project
+**/classpath
+**/.settings/
+/bin/
+blog/bin/
+**/.tern-project
+
+#arquivos temporários do intellij
+**/*.iml
+**/.idea
+**/.gradle
+
 /.metadata/
