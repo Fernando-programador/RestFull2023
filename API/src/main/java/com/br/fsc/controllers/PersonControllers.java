@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.fsc.models.Person;
 import com.br.fsc.service.PersonService;
 import com.br.fsc.valueObject_v1.PersonVO;
 import com.br.fsc.valueObject_v2.PersonVO_v2;
