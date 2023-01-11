@@ -1,6 +1,7 @@
-package com.br.fsc.valueObject;
+package com.br.fsc.valueObject_v2;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
-public class PersonVO implements Serializable {
+public class PersonVO_v2 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,21 +22,29 @@ public class PersonVO implements Serializable {
 	private String firstName;
 	
 	private String lastName;
+	
+	private Date birthDay;
 
 	private String address;
 
 	private String gender;
 
-	public PersonVO() {
+	public PersonVO_v2() {
 	}
 
-	public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
+
+
+	public PersonVO_v2(Long id, String firstName, String lastName, Date birthDay, String address, String gender) {
+		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.birthDay = birthDay;
 		this.address = address;
 		this.gender = gender;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -65,6 +74,18 @@ public class PersonVO implements Serializable {
 		return address;
 	}
 
+	public Date getBirthDay() {
+		return birthDay;
+	}
+
+
+
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
+	}
+
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -77,10 +98,14 @@ public class PersonVO implements Serializable {
 		this.gender = gender;
 	}
 
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstName, gender, id, lastName);
+		return Objects.hash(address, birthDay, firstName, gender, id, lastName);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,11 +115,12 @@ public class PersonVO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PersonVO other = (PersonVO) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
-				&& Objects.equals(lastName, other.lastName);
+		PersonVO_v2 other = (PersonVO_v2) obj;
+		return Objects.equals(address, other.address) && Objects.equals(birthDay, other.birthDay)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender)
+				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName);
 	}
+
 	
 	
 

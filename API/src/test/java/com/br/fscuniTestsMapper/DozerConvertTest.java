@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.br.fsc.mapper.DozerMapper;
 import com.br.fsc.models.Person;
 import com.br.fsc.uniTestsMapperMock.MockPerson;
-import com.br.fsc.valueObject.PersonVO;
+import com.br.fsc.valueObject_v1.PersonVO;
 
 public class DozerConvertTest {
 	

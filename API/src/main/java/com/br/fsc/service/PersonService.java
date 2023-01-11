@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.br.fsc.exceptions.ResourceNotFoundException;
 import com.br.fsc.mapper.DozerMapper;
+import com.br.fsc.mapper.custom.PersonMapper;
 import com.br.fsc.models.Person;
 import com.br.fsc.repository.PersonRepository;
-import com.br.fsc.valueObject.PersonVO;
+import com.br.fsc.valueObject_v1.PersonVO;
+import com.br.fsc.valueObject_v2.PersonVO_v2;
 
 @Service
 public class PersonService {
@@ -31,6 +33,10 @@ public class PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 
+	@Autowired
+	private PersonMapper personMapper;
+	
+	
 	public List<PersonVO> finAll() {
 		logger.info("Finding all person(obter todos do personSrvice)");
 
@@ -66,6 +72,19 @@ public class PersonService {
 		personVO = DozerMapper.parseObject(vo, PersonVO.class);
 
 		return personVO;
+	}
+	
+	public PersonVO_v2 create_v2(PersonVO_v2 personVO_v2) {
+		logger.info("Creating one person(criando uma pessoa personService)");
+		
+		personVO_v2.setId(null);
+		
+		var entity = personMapper.convertVOToEntity(personVO_v2);
+		var vo = personMapper.convertEntityToVO(personRepository.save(entity));
+		
+		personVO_v2 = DozerMapper.parseObject(vo, PersonVO_v2.class);
+		
+		return personVO_v2;
 	}
 
 	public PersonVO update(PersonVO personVO) {

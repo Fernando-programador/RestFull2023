@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.fsc.models.Person;
 import com.br.fsc.service.PersonService;
-import com.br.fsc.valueObject.PersonVO;
+import com.br.fsc.valueObject_v1.PersonVO;
+import com.br.fsc.valueObject_v2.PersonVO_v2;
 
 @RestController
 @RequestMapping("/person")
@@ -69,6 +70,15 @@ public class PersonControllers {
 	public PersonVO criar(@RequestBody PersonVO personVO) {
 		
 		return personService.create(personVO);
+	}
+	
+	@PostMapping(value = "/v2",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE}
+			)
+	public PersonVO_v2 criar_v2(@RequestBody PersonVO_v2 personVO_v2) {
+		
+		return personService.create_v2(personVO_v2);
 	}
 	
 	@PutMapping(

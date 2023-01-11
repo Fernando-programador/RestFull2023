@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.br.fsc.models.Person;
-import com.br.fsc.valueObject.PersonVO;
+import com.br.fsc.valueObject_v1.PersonVO;
 
 public class MockPerson {
 	
