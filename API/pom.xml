@@ -17,6 +17,9 @@
 		<java.version>17</java.version>
 		<dozer.version>6.4.0</dozer.version>
 		<flyway.version>9.11.0</flyway.version>
+		<xml.version>2.14.1</xml.version>
+		<yml.version>2.14.1</yml.version>
+		<hateoas.version>2.0.0</hateoas.version>
 	</properties>
 	<dependencies>
 		<!-- inicio banco de dados-->
@@ -42,34 +45,6 @@
 		</dependency>
 		<!-- termino banco de dados-->
 		
-		<!-- -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
-		
-
-		<!-- 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		-->
-	
-		
-		<!--versionamento-->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-mysql</artifactId>
-		</dependency>
-		
-		
 		<!--mappeador-->
 		<dependency>
 		  <groupId>com.github.dozermapper</groupId>
@@ -77,6 +52,53 @@
 		  <version>${dozer.version}</version>
 		</dependency>
 		
+		<!--versionamento-->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+		
+		<!-- obter response em xml -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-xml</artifactId>
+		    <version>${xml.version}</version>
+		</dependency>
+		
+		<!-- obter response em yml -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-yaml</artifactId>
+		    <version>${yml.version}</version>
+		</dependency>
+
+		<!--hateoas-->
+		<dependency>
+		    <groupId>org.springframework.hateoas</groupId>
+		    <artifactId>spring-hateoas</artifactId>
+		    <version>${hateoas.version}</version>
+		</dependency>
+
+
+			<!--hateoas
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		-->
+				<!-- 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		-->
+		
+		<!--dependencias comums-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

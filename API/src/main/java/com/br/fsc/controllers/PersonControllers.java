@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.fsc.service.PersonService;
+import com.br.fsc.util.MediaType;
 import com.br.fsc.valueObject_v1.PersonVO;
 import com.br.fsc.valueObject_v2.PersonVO_v2;
 
@@ -44,7 +44,9 @@ public class PersonControllers {
 	
 	@GetMapping(
 			produces = {
-					MediaType.APPLICATION_JSON_VALUE}
+					MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML}
 			)
 	public List<PersonVO> obterTodos(){
 		
@@ -54,7 +56,9 @@ public class PersonControllers {
 	
 	@GetMapping(value = "/{id}",
 			produces = {
-					MediaType.APPLICATION_JSON_VALUE}
+					MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML}
 			)
 	public PersonVO obterPorId(@PathVariable ("id") Long id){
 		
@@ -63,8 +67,12 @@ public class PersonControllers {
 
 	
 	@PostMapping(
-			consumes = {MediaType.APPLICATION_JSON_VALUE},
-			produces = {MediaType.APPLICATION_JSON_VALUE}
+			consumes = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML}
 			)
 	public PersonVO criar(@RequestBody PersonVO personVO) {
 		
@@ -72,8 +80,12 @@ public class PersonControllers {
 	}
 	
 	@PostMapping(value = "/v2",
-			consumes = {MediaType.APPLICATION_JSON_VALUE},
-			produces = {MediaType.APPLICATION_JSON_VALUE}
+			consumes = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML}
 			)
 	public PersonVO_v2 criar_v2(@RequestBody PersonVO_v2 personVO_v2) {
 		
@@ -81,8 +93,12 @@ public class PersonControllers {
 	}
 	
 	@PutMapping(
-			consumes = {MediaType.APPLICATION_JSON_VALUE},
-			produces = {MediaType.APPLICATION_JSON_VALUE}
+			consumes = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,
+					MediaType.APPLICATION_XML,
+					MediaType.APPLICATION_YML}
 			)
 	public PersonVO atualizar(@RequestBody PersonVO personVO) {
 		
