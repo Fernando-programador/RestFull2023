@@ -22,7 +22,7 @@
 		<hateoas.version>2.0.0</hateoas.version>
 	</properties>
 	<dependencies>
-		<!-- inicio banco de dados-->
+		<!-- INICIO DEPENDENCIAS DE BANCO DE DADOS MSQL-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
@@ -43,16 +43,17 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- termino banco de dados-->
+		<!-- TERMINO DEPENDENCIAS DE BANCO DE DADOS MSQL-->
 		
-		<!--mappeador-->
+		<!-- DEPENDENCIAS ADICIONAIS-->
+		<!--MAPEAMENTO VALUE OJECTS-->
 		<dependency>
 		  <groupId>com.github.dozermapper</groupId>
 		  <artifactId>dozer-core</artifactId>
 		  <version>${dozer.version}</version>
 		</dependency>
 		
-		<!--versionamento-->
+		<!--VESIONAMENTO -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
@@ -63,21 +64,21 @@
 			<artifactId>flyway-mysql</artifactId>
 		</dependency>
 		
-		<!-- obter response em xml -->
+		<!-- OBTER RESPONSE EM XML-->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-xml</artifactId>
 		    <version>${xml.version}</version>
 		</dependency>
 		
-		<!-- obter response em yml -->
+		<!-- OBTER RESPONSE EM YAML -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-yaml</artifactId>
 		    <version>${yml.version}</version>
 		</dependency>
 
-		<!--hateoas-->
+		<!--HATOEAS -> PARA LINKS-->
 		<dependency>
 		    <groupId>org.springframework.hateoas</groupId>
 		    <artifactId>spring-hateoas</artifactId>
@@ -98,7 +99,7 @@
 		</dependency>
 		-->
 		
-		<!--dependencias comums-->
+		<!--DEPENDENCIAS COMUNS-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -113,6 +114,13 @@
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		
+		
+		<!-- DEPENDENCIAS DE TESTES-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -122,10 +130,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
 		</dependency>
+	
 
 	</dependencies>
 
