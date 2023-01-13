@@ -31,3 +31,5 @@ no header -> http://localhost:8080/person/6 (no postman no header acrescentar KE
 clicar em PersonService e entre em junit test case e selecionar(New Junit jupter test e @BeforeEach setUp()) e selecionar todos os PersonService
 digitar o import manual -> import static org.mockito.Mockito.when; na classe  PersonServicrTest.java
 ![mockito](https://user-images.githubusercontent.com/95228196/212233719-b8964645-e76b-45ca-938f-b8e3fc4a38cf.png)
+
+9-> swagger
