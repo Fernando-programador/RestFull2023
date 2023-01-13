@@ -20,6 +20,7 @@
 		<xml.version>2.14.1</xml.version>
 		<yml.version>2.14.1</yml.version>
 		<hateoas.version>2.0.0</hateoas.version>
+		<swagger.version>1.6.14</swagger.version>
 	</properties>
 	<dependencies>
 		<!-- INICIO DEPENDENCIAS DE BANCO DE DADOS MSQL-->
@@ -57,7 +58,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
+		
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -68,23 +69,37 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-xml</artifactId>
-		    <version>${xml.version}</version>
+		  
 		</dependency>
 		
 		<!-- OBTER RESPONSE EM YAML -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-yaml</artifactId>
-		    <version>${yml.version}</version>
+		  
 		</dependency>
 
 		<!--HATOEAS -> PARA LINKS-->
 		<dependency>
 		    <groupId>org.springframework.hateoas</groupId>
 		    <artifactId>spring-hateoas</artifactId>
-		    <version>${hateoas.version}</version>
 		</dependency>
-
+		
+	
+		<!-- SWAGGER -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		
+			<!-- SWAGGER não funciona na versão 3.0
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		-->
 
 			<!--hateoas
 		<dependency>
@@ -104,14 +119,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -148,5 +163,7 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+
 
 </project>
