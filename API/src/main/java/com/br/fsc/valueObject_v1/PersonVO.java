@@ -16,7 +16,8 @@ public class PersonVO extends RepresentationModel<PersonVO > implements Serializ
 
 	private static final long serialVersionUID = 1L;
 	
-	
+	@JsonProperty("id")
+	@Mapping("id")
 	private Long key;
 	
 
@@ -43,8 +44,8 @@ public class PersonVO extends RepresentationModel<PersonVO > implements Serializ
 		this.gender = gender;
 	}
 	
-	@JsonProperty("id")
-	@Mapping("id")
+	//@JsonProperty("id")
+	//@Mapping("id")
 	public Long getKey() {
 		return key;
 	}

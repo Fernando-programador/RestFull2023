@@ -11,6 +11,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 import com.br.fsc.controllers.PersonControllers;
+import com.br.fsc.exceptions.RequeriedObjectIsNullException;
 import com.br.fsc.exceptions.ResourceNotFoundException;
 import com.br.fsc.mapper.DozerMapper;
 import com.br.fsc.mapper.custom.PersonMapper;
@@ -68,6 +69,10 @@ public class PersonService {
 	}
 
 	public PersonVO create(PersonVO personVO) {
+		//validando regras de negocios
+		if (personVO == null)throw new RequeriedObjectIsNullException();
+		
+		
 		logger.info("Creating one person(criando uma pessoa personService)");
 
 		personVO.setKey(null);
@@ -94,6 +99,9 @@ public class PersonService {
 	}
 
 	public PersonVO update(PersonVO personVO) {
+		//validando regras de negocios
+		if (personVO == null)throw new RequeriedObjectIsNullException();
+		
 		logger.info("update one person(atualizando uma pessoa personService)");
 
 		var entity = personRepository.findById(personVO.getKey())
