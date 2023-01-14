@@ -19,98 +19,134 @@ import com.br.fsc.util.MediaType;
 import com.br.fsc.valueObject_v1.PersonVO;
 import com.br.fsc.valueObject_v2.PersonVO_v2;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person")
+@Tag(name = "People", description = "Endpoints for managing People")
 public class PersonControllers {
-	
-	
+
 	@Autowired
 	private PersonService personService;
-	
-	/*  MOCKADO
-	@RequestMapping(value = "/{id}",
-			method = RequestMethod.GET,
-			produces = {
-					MediaType.APPLICATION_JSON_VALUE}
-			)
-	public Person obterPorId(@PathVariable (value = "id") String id) throws Exception {
-		
-		return personService.findById(id);
-	}*/
-	
-	
-	
-	
-	
-	@GetMapping(
-			produces = {
-					MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML}
-			)
-	public List<PersonVO> obterTodos(){
-		
+
+	/*
+	 * MOCKADO
+	 * 
+	 * @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
+	 * MediaType.APPLICATION_JSON_VALUE} ) public Person obterPorId(@PathVariable
+	 * (value = "id") String id) throws Exception {
+	 * 
+	 * return personService.findById(id); }
+	 */
+
+	@GetMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
+	@Operation(summary = "Finds all people",
+	description = "Encontrar todas as pessoas utilizando Json, Xml e Yaml",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "Sucess", responseCode = "200", content = {
+					@Content(mediaType = "application/json",
+							array = @ArraySchema(schema = @Schema(implementation = PersonVO.class)
+							))}),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
+	public List<PersonVO> obterTodos() {
+
 		return personService.finAll();
 	}
-	
-	
-	@GetMapping(value = "/{id}",
-			produces = {
-					MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML}
-			)
-	public PersonVO obterPorId(@PathVariable ("id") Long id){
-		
+
+	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
+	@Operation(summary = "Finds as people",
+	description = "Encontrar uma pessoa utilizando Json, Xml e Yaml",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "Sucess", responseCode = "200", content = {
+					@Content(schema = @Schema(implementation = PersonVO.class)
+							)}),
+					@ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
+	public PersonVO obterPorId(@PathVariable("id") Long id) {
+
 		return personService.findById(id);
 	}
 
-	
-	@PostMapping(
-			consumes = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML},
-			produces = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML}
-			)
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
+			produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML })
+	@Operation(summary = "Add as new People",
+	description = "Adicionar uma nova pessoa utilizando Json, Xml e Yaml",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "Sucess", responseCode = "200", content = {
+					@Content(schema = @Schema(implementation = PersonVO.class)
+							)}),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
 	public PersonVO criar(@RequestBody PersonVO personVO) {
-		
+
 		return personService.create(personVO);
 	}
-	
-	@PostMapping(value = "/v2",
-			consumes = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML},
-			produces = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML}
-			)
+
+	@PostMapping(value = "/v2", consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML },
+			produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML })
+	@Operation(summary = "Add as new People",
+	description = "Adicionar uma nova pessoa utilizando Json, Xml e Yaml e versionamento adicionando BirthDay",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "Sucess", responseCode = "200", content = {
+					@Content(schema = @Schema(implementation = PersonVO.class)
+							)}),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
 	public PersonVO_v2 criar_v2(@RequestBody PersonVO_v2 personVO_v2) {
-		
+
 		return personService.create_v2(personVO_v2);
 	}
-	
-	@PutMapping(
-			consumes = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML},
-			produces = {MediaType.APPLICATION_JSON,
-					MediaType.APPLICATION_XML,
-					MediaType.APPLICATION_YML}
-			)
+
+	@PutMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML },
+			produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML })
+	@Operation(summary = "Updates a People",
+	description = "Alterar registro uma pessoa já cadastrada utilizando Json, Xml e Yaml",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "Updated", responseCode = "200", content = {
+					@Content(schema = @Schema(implementation = PersonVO.class)
+							)}),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
 	public PersonVO atualizar(@RequestBody PersonVO personVO) {
-		
+
 		return personService.update(personVO);
 	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<HttpStatus> deletar(@PathVariable ("id") Long id){
-		personService.delete(id);
-		
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-}
 
-	
+	@DeleteMapping("/{id}")
+	@Operation(summary = "Delete a People",
+	description = "Apagando registro de uma pessoa utilizando Json, Xml e Yaml",
+	tags = {"people, person" },
+	responses = { @ApiResponse(description = "No Content", responseCode = "204", content = {@Content}),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
+					})
+	public ResponseEntity<HttpStatus> deletar(@PathVariable("id") Long id) {
+		personService.delete(id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
 }
