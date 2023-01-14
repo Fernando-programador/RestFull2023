@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "person")
@@ -20,6 +21,7 @@ public class Person implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "is not null")
 	@Column(name = "first_name", length = 50, nullable = false)
 	private String firstName;
 	
@@ -35,13 +37,19 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(Long id, String firstName, String lastName, String address, String gender) {
+
+
+	public Person(Long id, @NotBlank(message = "is not null") String firstName, String lastName, String address,
+			String gender) {
+		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.gender = gender;
 	}
+
+
 
 	public Long getId() {
 		return id;

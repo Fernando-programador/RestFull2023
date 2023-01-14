@@ -10,7 +10,7 @@ public class BookVO {
 	
 	private String author;
 	
-	private Date lauch_date;
+	private Date launch_date;
 	
 	private Double prince;
 	
