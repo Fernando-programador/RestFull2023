@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +34,7 @@ public class Book implements Serializable {
 	@Column(name = "author", length = 60, nullable = false)
 	private String author;
 
+	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Date is not null")
 	@Column(name = "launch_date", length = 20)
 	private Date launch_date;

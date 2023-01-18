@@ -1,7 +1,6 @@
 package com.br.fsc.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -119,9 +117,11 @@ public class PersonControllers {
 					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
 					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
 					})
-	public PersonVO_v2 criar_v2(@RequestBody PersonVO_v2 personVO_v2) {
+	public ResponseEntity<PersonVO_v2> criar_v2(@RequestBody PersonVO_v2 personVO_v2) {
 
-		return personService.create_v2(personVO_v2);
+		var vo = personService.create_v2(personVO_v2);
+		
+		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 
 	@PutMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML },
@@ -137,9 +137,10 @@ public class PersonControllers {
 					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
 					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
 					})
-	public PersonVO atualizar(@RequestBody PersonVO personVO) {
+	public ResponseEntity<PersonVO> atualizar(@RequestBody PersonVO personVO) {
 
-		return personService.update(personVO);
+		var vo = personService.update(personVO);
+		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
