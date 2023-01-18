@@ -61,9 +61,11 @@ public class PersonControllers {
 					@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
 					@ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
 					})
-	public List<PersonVO> obterTodos() {
+	public ResponseEntity<List<PersonVO>> obterTodos() {
 
-		return personService.finAll();
+		var vo = personService.finAll();
+		
+		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 
 	
