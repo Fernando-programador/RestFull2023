@@ -74,7 +74,7 @@ public class BookService {
 		
 		entity.setAuthor(bookVO.getAuthor());
 		entity.setLaunch_date(bookVO.getLaunch_date());
-		entity.setPrince(bookVO.getPrince());
+		entity.setPrice(bookVO.getPrice());
 		entity.setTitle(bookVO.getTitle());
 		
 		var vo = bookRepository.save(entity);

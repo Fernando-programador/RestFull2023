@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 
-@JsonPropertyOrder({"id", "author", "title", "launch_date", "prince"})
+@JsonPropertyOrder({"id", "author", "title", "launch_date", "price"})
 public class BookVO implements Serializable {
 
 	/**
@@ -24,19 +24,19 @@ public class BookVO implements Serializable {
 	
 	private Date launch_date;
 	
-	private Double prince;
+	private Double price;
 	
 	private String title;
 
 	public BookVO() {
 	}
 
-	public BookVO(Long key, String author, Date launch_date, Double prince, String title) {
+	public BookVO(Long key, String author, Date launch_date, Double price, String title) {
 		super();
 		this.key = key;
 		this.author = author;
 		this.launch_date = launch_date;
-		this.prince = prince;
+		this.price = price;
 		this.title = title;
 	}
 
@@ -64,12 +64,12 @@ public class BookVO implements Serializable {
 		this.launch_date = launch_date;
 	}
 
-	public Double getPrince() {
-		return prince;
+	public Double getPrice() {
+		return price;
 	}
 
-	public void setPrince(Double prince) {
-		this.prince = prince;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public String getTitle() {
@@ -82,7 +82,7 @@ public class BookVO implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, key, launch_date, prince, title);
+		return Objects.hash(author, key, launch_date, price, title);
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class BookVO implements Serializable {
 			return false;
 		BookVO other = (BookVO) obj;
 		return Objects.equals(author, other.author) && Objects.equals(key, other.key)
-				&& Objects.equals(launch_date, other.launch_date) && Objects.equals(prince, other.prince)
+				&& Objects.equals(launch_date, other.launch_date) && Objects.equals(price, other.price)
 				&& Objects.equals(title, other.title);
 	}
 	

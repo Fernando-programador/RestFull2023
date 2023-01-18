@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
-public class Book implements Serializable{
+public class Book implements Serializable {
 
 	/**
 	 * 
@@ -27,20 +27,20 @@ public class Book implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "is not null")
 	@Column(name = "author", length = 60, nullable = false)
 	private String author;
-	
+
 	@NotNull(message = "Date is not null")
-	@Column(name = "launch", length = 20)
+	@Column(name = "launch_date", length = 20)
 	private Date launch_date;
-	
-	@DecimalMax(value ="9999,99")
-	@DecimalMin(value = "0")
-	@Column(name = "prince")
-	private Double prince;
-	
+
+	@DecimalMax("9999.99")
+	@DecimalMin("1.0")
+	@Column(name = "price")
+	private Double price;
+
 	@NotNull(message = "is not null")
 	@Column(name = "title", length = 180, unique = true)
 	private String title;
@@ -48,21 +48,16 @@ public class Book implements Serializable{
 	public Book() {
 	}
 
-
 	public Book(Long id, @NotBlank(message = "is not null") String author,
 			@NotNull(message = "Date is not null") Date launch_date,
-			@DecimalMax("9999,99") @DecimalMin("0") Double prince, @NotNull(message = "is not null") String title) {
+			@DecimalMax("9999.99") @DecimalMin("1.0") Double price, @NotNull(message = "is not null") String title) {
 		super();
 		this.id = id;
 		this.author = author;
 		this.launch_date = launch_date;
-		this.prince = prince;
+		this.price = price;
 		this.title = title;
 	}
-
-
-
-
 
 	public Long getId() {
 		return id;
@@ -88,12 +83,12 @@ public class Book implements Serializable{
 		this.launch_date = launch_date;
 	}
 
-	public Double getPrince() {
-		return prince;
+	public Double getPrice() {
+		return price;
 	}
 
-	public void setPrince(Double prince) {
-		this.prince = prince;
+	public void setPrice(Double prince) {
+		this.price = prince;
 	}
 
 	public String getTitle() {
@@ -106,7 +101,7 @@ public class Book implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, id, launch_date, prince, title);
+		return Objects.hash(author, id, launch_date, price, title);
 	}
 
 	@Override
@@ -119,11 +114,8 @@ public class Book implements Serializable{
 			return false;
 		Book other = (Book) obj;
 		return Objects.equals(author, other.author) && Objects.equals(id, other.id)
-				&& Objects.equals(launch_date, other.launch_date) && Objects.equals(prince, other.prince)
+				&& Objects.equals(launch_date, other.launch_date) && Objects.equals(price, other.price)
 				&& Objects.equals(title, other.title);
 	}
-	
-	
-	
-	
+
 }
