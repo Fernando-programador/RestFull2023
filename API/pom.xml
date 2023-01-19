@@ -21,6 +21,9 @@
 		<yml.version>2.14.1</yml.version>
 		<hateoas.version>2.0.0</hateoas.version>
 		<swagger.version>1.6.14</swagger.version>
+		<testcontainers.version>1.17.6</testcontainers.version>
+		<rest-assured.version>5.3.0</rest-assured.version>
+		
 	</properties>
 	<dependencies>
 		<!-- INICIO DEPENDENCIAS DE BANCO DE DADOS MSQL-->
@@ -44,6 +47,11 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 		<!-- TERMINO DEPENDENCIAS DE BANCO DE DADOS MSQL-->
 		
 		<!-- DEPENDENCIAS ADICIONAIS-->
@@ -54,12 +62,13 @@
 		  <version>${dozer.version}</version>
 		</dependency>
 		
-		<!--VESIONAMENTO -->
+		<!--VESIONAMENTO -> ADICIONAR  -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-		
 		</dependency>
+		
+		<!-- MIGRATION -> INSERIR DADOS-->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
@@ -69,14 +78,12 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-xml</artifactId>
-		  
 		</dependency>
 		
 		<!-- OBTER RESPONSE EM YAML -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
-		    <artifactId>jackson-dataformat-yaml</artifactId>
-		  
+		    <artifactId>jackson-dataformat-yaml</artifactId> 
 		</dependency>
 
 		<!--HATOEAS -> PARA LINKS-->
@@ -86,7 +93,7 @@
 		</dependency>
 		
 	
-		<!-- SWAGGER -->
+		<!-- SWAGGER -> DOCUMENTAÇÃO -->
 		<dependency>
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -133,6 +140,9 @@
 		</dependency>
 		
 		
+		
+		
+		
 		<!-- DEPENDENCIAS DE TESTES-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -146,17 +156,28 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- TESTE MOCKITO-->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
 	
-
+		<!-- TEST-CONTAINER-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>mysql</artifactId>
+			<scope>test</scope>
 		</dependency>
+		
+		<!-- REST-ASSURED -->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>rest-assured</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- FIM DEPENDENCIAS TESTES-->
 	</dependencies>
 
 	<build>
@@ -170,4 +191,15 @@
 	
 
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers-bom</artifactId>
+				<version>${testcontainers.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
