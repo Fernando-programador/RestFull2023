@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,7 +67,7 @@ public class PersonControllers {
 		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 
-	
+	//@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Finds as people",
 	description = "Encontrar uma pessoa utilizando Json, Xml e Yaml",
@@ -86,6 +87,7 @@ public class PersonControllers {
 		return new ResponseEntity<PersonVO>(vo,HttpStatus.OK);
 	}
 
+	//@CrossOrigin(origins = {"http://localhost:8080", "https://ajeitandoseulado.com.br"})
 	@Validated
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
 			produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,	MediaType.APPLICATION_YML })
