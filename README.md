@@ -33,3 +33,19 @@ digitar o import manual -> import static org.mockito.Mockito.when; na classe  Pe
 ![mockito](https://user-images.githubusercontent.com/95228196/212233719-b8964645-e76b-45ca-938f-b8e3fc4a38cf.png)
 
 9-> swagger
+
+10 -> cors neste projeto implementei o cors de modo global deixando a implementação pelo controllers apenas como comentário
+
+
+OBS: passo 11 começa a parte mais complicada que é a parte de security vou postar a sequencia de cada uma das classes adicionadas
+
+11 -> JWT security
+
+adicione três classe e inseri dados  com migration
+
+adicionar duas dependencia 
+
+criar as entidades
+
+em user implementar userdetails
+
