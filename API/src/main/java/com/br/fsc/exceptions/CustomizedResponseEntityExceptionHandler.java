@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.br.fsc.exceptions.security.InvalidJwtAuthenticationException;
+
 @RestController
 @RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
@@ -36,6 +38,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 				ex.getMessage(), 
 				request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(InvalidJwtAuthenticationException.class)
+	public final ResponseEntity<ExceptionResponse> handlerInvalidJwtAuthenticationException(
+			Exception ex, WebRequest request){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),
+				ex.getMessage(), 
+				request.getDescription(false));
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
 	}
 	
 	@ExceptionHandler(RequeriedObjectIsNullException.class)
