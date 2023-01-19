@@ -47,5 +47,7 @@ adicionar duas dependencia
 
 criar as entidades
 
-em user implementar userdetails
+em "user" implementar userdetails
+
+
 
